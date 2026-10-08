@@ -1,0 +1,214 @@
+[gd_scene format=3 uid="uid://c001oap5m2ct1"]
+
+[ext_resource type="Script" uid="uid://e310vevll57" path="res://base.gd" id="1_b56jl"]
+[ext_resource type="PackedScene" uid="uid://eve0ridqh0re" path="res://Nodes/Player.tscn" id="1_nfj5t"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_bhunq"]
+size = Vector3(12.743256, 1, 14.922607)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_nfj5t"]
+data = PackedVector3Array(-6.3715997, 0.5, 7.4613, 6.3715997, 0.5, 7.4613, -6.3715997, -0.5, 7.4613, 6.3715997, 0.5, 7.4613, 6.3715997, -0.5, 7.4613, -6.3715997, -0.5, 7.4613, 6.3715997, 0.5, -7.4613, -6.3715997, 0.5, -7.4613, 6.3715997, -0.5, -7.4613, -6.3715997, 0.5, -7.4613, -6.3715997, -0.5, -7.4613, 6.3715997, -0.5, -7.4613, 6.3715997, 0.5, 7.4613, 6.3715997, 0.5, -7.4613, 6.3715997, -0.5, 7.4613, 6.3715997, 0.5, -7.4613, 6.3715997, -0.5, -7.4613, 6.3715997, -0.5, 7.4613, -6.3715997, 0.5, -7.4613, -6.3715997, 0.5, 7.4613, -6.3715997, -0.5, -7.4613, -6.3715997, 0.5, 7.4613, -6.3715997, -0.5, 7.4613, -6.3715997, -0.5, -7.4613, 6.3715997, 0.5, 7.4613, -6.3715997, 0.5, 7.4613, 6.3715997, 0.5, -7.4613, -6.3715997, 0.5, 7.4613, -6.3715997, 0.5, -7.4613, 6.3715997, 0.5, -7.4613, -6.3715997, -0.5, 7.4613, 6.3715997, -0.5, 7.4613, -6.3715997, -0.5, -7.4613, 6.3715997, -0.5, 7.4613, 6.3715997, -0.5, -7.4613, -6.3715997, -0.5, -7.4613)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xhfnw"]
+size = Vector3(7.521057, 1, 10.431641)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kpjcp"]
+size = Vector3(7.964203, 1, 10.439453)
+
+[sub_resource type="BoxMesh" id="BoxMesh_riqys"]
+size = Vector3(0.30993652, 0.32263184, 0.30664063)
+
+[node name="Base" type="Node3D" unique_id=47323606]
+script = ExtResource("1_b56jl")
+
+[node name="CharacterBody3D" parent="." unique_id=311895342 instance=ExtResource("1_nfj5t")]
+transform = Transform3D(-0.0016240311, 0, -0.9999987, 0, 1, 0, 0.9999987, 0, -0.0016240311, 0, 0.9931961, 0)
+
+[node name="Map" type="Node3D" parent="." unique_id=1921643922]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Map" unique_id=1817454081]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/StaticBody3D" unique_id=633925391]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2915497, -0.012640834, 0.28503418)
+mesh = SubResource("BoxMesh_bhunq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/StaticBody3D" unique_id=265422566]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2915497, -0.012640834, 0.28503418)
+shape = SubResource("ConcavePolygonShape3D_nfj5t")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Map" unique_id=1638742703]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 1.6278763, 2.075196, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/StaticBody3D2" unique_id=1348613057]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1595767, -0.012640834, 0.28503418)
+mesh = SubResource("BoxMesh_xhfnw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/StaticBody3D2" unique_id=2125892175]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9387133, -0.0068352222, 0.27954102)
+shape = SubResource("BoxShape3D_kpjcp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Map" unique_id=1998293521]
+transform = Transform3D(-0.28509337, 0.53611237, -0.79454726, 0.119965844, 0.8423884, 0.52534753, 0.95096266, 0.054454554, -0.3044745, 0, 6.928606, 15.658919)
+light_energy = 1.887
+light_indirect_energy = 1.185
+light_angular_distance = 3.85
+
+[node name="Interactions" type="Node3D" parent="." unique_id=943070731]
+
+[node name="Test" type="Node3D" parent="Interactions" unique_id=101513073]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.813671, 1.413882, 7.915206)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Interactions/Test" unique_id=245446287]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0096616745, 0.038679242, -0.0064897537)
+mesh = SubResource("BoxMesh_riqys")
+metadata/_edit_lock_ = true
+
+[node name="Test2" type="Node3D" parent="Interactions" unique_id=1885689311]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.813671, 1.413882, -6.3971376)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Interactions/Test2" unique_id=2071437557]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0096616745, 0.038679242, -0.0064897537)
+mesh = SubResource("BoxMesh_riqys")
+metadata/_edit_lock_ = true
+
+[node name="UI" type="Control" parent="." unique_id=1127636176]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Interaction" type="Control" parent="UI" unique_id=1573484419]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bar" type="ColorRect" parent="UI/Interaction" unique_id=2104114531]
+layout_mode = 0
+offset_right = 239.0
+offset_bottom = 63.0
+color = Color(0.5449743, 0.54497427, 0.54497427, 1)
+
+[node name="Over2" type="ColorRect" parent="UI/Interaction/Bar" unique_id=793103682]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 2.0
+offset_right = -5.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.32172796, 0.32172796, 0.32172796, 1)
+
+[node name="Over" type="ColorRect" parent="UI/Interaction/Bar" unique_id=2133225521]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 4.0
+offset_right = -8.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1)
+color = Color(0.8560673, 0.8560673, 0.85606724, 1)
+
+[node name="Label" type="Label" parent="UI/Interaction" unique_id=560095952]
+layout_mode = 0
+offset_left = 15.0
+offset_top = -1.0
+offset_right = 60.0
+offset_bottom = 62.0
+theme_override_font_sizes/font_size = 45
+text = "E"
+
+[node name="SkillCheck" type="Control" parent="UI" unique_id=2043027683]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -242.0
+offset_top = 427.0
+offset_right = 242.0
+offset_bottom = -119.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Box" type="ColorRect" parent="UI/SkillCheck" unique_id=1623853842]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 13.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.23753911, 0.23753914, 0.23753911, 1)
+
+[node name="SemiSpace" type="ColorRect" parent="UI/SkillCheck" unique_id=1670043347]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_top = 11.0
+offset_right = 58.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(58, 0)
+color = Color(0.72034585, 0.35475186, 0, 1)
+
+[node name="Space" type="ColorRect" parent="UI/SkillCheck" unique_id=1270671612]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = 11.0
+offset_right = 18.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(18, 0)
+
+[node name="Arrow" type="ColorRect" parent="UI/SkillCheck" unique_id=2090811931]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 238.0
+offset_right = 242.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="LineEdit" type="LineEdit" parent="." unique_id=1332674014]
+offset_left = 1.0
+offset_top = 36.0
+offset_right = 125.0
+offset_bottom = 67.0
+text = "1"
+alignment = 1
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="Label" type="Label" parent="LineEdit" unique_id=85272040]
+layout_mode = 0
+offset_top = -23.0
+offset_right = 123.0
+text = "SkillCheck"
+horizontal_alignment = 1
+
+[connection signal="text_changed" from="LineEdit" to="CharacterBody3D" method="_on_line_edit_text_changed"]
