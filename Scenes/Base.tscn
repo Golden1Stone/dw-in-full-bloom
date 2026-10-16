@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://c001oap5m2ct1"]
 
-[ext_resource type="Script" uid="uid://e310vevll57" path="res://base.gd" id="1_b56jl"]
-[ext_resource type="PackedScene" uid="uid://eve0ridqh0re" path="res://Nodes/Player.tscn" id="1_nfj5t"]
+[ext_resource type="Script" uid="uid://e310vevll57" path="res://Scripts/base.gd" id="1_56fhp"]
+[ext_resource type="PackedScene" uid="uid://eve0ridqh0re" path="res://Scenes/Player.tscn" id="2_ospri"]
+[ext_resource type="Script" uid="uid://bckcqvi86yhcq" path="res://Scripts/inventory_ui.gd" id="3_ym4w0"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_bhunq"]
 size = Vector3(12.743256, 1, 14.922607)
@@ -19,10 +20,11 @@ size = Vector3(7.964203, 1, 10.439453)
 size = Vector3(0.30993652, 0.32263184, 0.30664063)
 
 [node name="Base" type="Node3D" unique_id=47323606]
-script = ExtResource("1_b56jl")
+script = ExtResource("1_56fhp")
 
-[node name="CharacterBody3D" parent="." unique_id=311895342 instance=ExtResource("1_nfj5t")]
+[node name="Player" parent="." unique_id=311895342 node_paths=PackedStringArray("debug_skillcheck") instance=ExtResource("2_ospri")]
 transform = Transform3D(-0.0016240311, 0, -0.9999987, 0, 1, 0, 0.9999987, 0, -0.0016240311, 0, 0.9931961, 0)
+debug_skillcheck = NodePath("../UI/HUD/DEBUG/Skillcheck")
 
 [node name="Map" type="Node3D" parent="." unique_id=1921643922]
 
@@ -80,6 +82,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Interaction" type="Control" parent="UI" unique_id=1573484419]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -127,6 +130,7 @@ theme_override_font_sizes/font_size = 45
 text = "E"
 
 [node name="SkillCheck" type="Control" parent="UI" unique_id=2043027683]
+visible = false
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -191,7 +195,22 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="LineEdit" type="LineEdit" parent="." unique_id=1332674014]
+[node name="HUD" type="Control" parent="UI" unique_id=433527258]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DEBUG" type="Control" parent="UI/HUD" unique_id=890805128]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Skillcheck" type="LineEdit" parent="UI/HUD/DEBUG" unique_id=1332674014]
+layout_mode = 0
 offset_left = 1.0
 offset_top = 36.0
 offset_right = 125.0
@@ -204,11 +223,45 @@ shortcut_keys_enabled = false
 middle_mouse_paste_enabled = false
 drag_and_drop_selection_enabled = false
 
-[node name="Label" type="Label" parent="LineEdit" unique_id=85272040]
+[node name="Label" type="Label" parent="UI/HUD/DEBUG/Skillcheck" unique_id=85272040]
 layout_mode = 0
 offset_top = -23.0
 offset_right = 123.0
 text = "SkillCheck"
 horizontal_alignment = 1
 
-[connection signal="text_changed" from="LineEdit" to="CharacterBody3D" method="_on_line_edit_text_changed"]
+[node name="InventoryUI" type="Control" parent="UI/HUD" unique_id=1240490065 node_paths=PackedStringArray("player", "slot_container")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -666.0
+offset_top = -110.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("3_ym4w0")
+player = NodePath("../../../Player")
+slot_container = NodePath("MarginContainer/HBoxContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HUD/InventoryUI" unique_id=108523588]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -6.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 7
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD/InventoryUI/MarginContainer" unique_id=107018606]
+layout_mode = 2
+alignment = 2
+
+[connection signal="text_changed" from="UI/HUD/DEBUG/Skillcheck" to="Player" method="_on_line_edit_text_changed"]

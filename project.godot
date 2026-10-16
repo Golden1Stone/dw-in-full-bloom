@@ -11,14 +11,18 @@ config_version=5
 [application]
 
 config/name="DW In Full Bloom"
-run/main_scene="res://Base.tscn"
+run/main_scene="res://Scenes/Base.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://cnu1cqjuif581"
 
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[dotnet]
+
+project/assembly_name="DW In Full Bloom"
 
 [input]
 

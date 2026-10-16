@@ -1,7 +1,7 @@
 extends Node3D
 
 @onready var UI : Control = $UI
-@onready var thePlayer : CharacterBody3D = $CharacterBody3D
+@onready var thePlayer : CharacterBody3D = $Player
 @onready var Interaction : Control = UI.find_child("Interaction")
 var InteractionStop : bool = false
 var active_state: Callable

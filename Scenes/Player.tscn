@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://eve0ridqh0re"]
 
-[ext_resource type="Script" uid="uid://brnmcmpmu8jun" path="res://player.gd" id="1_xhfnw"]
+[ext_resource type="Script" uid="uid://brnmcmpmu8jun" path="res://Classes/player.gd" id="1_xhfnw"]
+[ext_resource type="Script" uid="uid://brwywywi25xrl" path="res://Classes/player_inventory.gd" id="2_kyqiw"]
+[ext_resource type="Script" uid="uid://cpus2tgn37t5k" path="res://Classes/item.gd" id="3_gntrk"]
+[ext_resource type="Texture2D" uid="uid://cnu1cqjuif581" path="res://icon.png" id="4_dewec"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_riqys"]
 height = 1.5673828
@@ -10,9 +13,10 @@ height = 1.5673828
 [sub_resource type="SphereShape3D" id="SphereShape3D_kpjcp"]
 radius = 0.1
 
-[node name="CharacterBody3D" type="CharacterBody3D" unique_id=311895342]
+[node name="Player" type="CharacterBody3D" unique_id=311895342 node_paths=PackedStringArray("inventory")]
 transform = Transform3D(-0.0016240311, 0, -0.9999987, 0, 1, 0, 0.9999987, 0, -0.0016240311, 0, 0, 0)
 script = ExtResource("1_xhfnw")
+inventory = NodePath("PlayerInventory")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1617875328]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6432457, 0)
@@ -30,3 +34,12 @@ margin = 1.0
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=1426230323]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.436885e-05, 0.018881679, 0.05194991)
+
+[node name="PlayerInventory" type="Node" parent="." unique_id=1935067938]
+script = ExtResource("2_kyqiw")
+metadata/_custom_type_script = "uid://brwywywi25xrl"
+
+[node name="Item" type="Node" parent="PlayerInventory" unique_id=1273897167]
+script = ExtResource("3_gntrk")
+item_icon = ExtResource("4_dewec")
+metadata/_custom_type_script = "uid://cpus2tgn37t5k"

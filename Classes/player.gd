@@ -1,6 +1,8 @@
+class_name Player
 extends CharacterBody3D
 
-class_name Player
+@export var inventory : PlayerInventory
+@export var debug_skillcheck : LineEdit
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -8,8 +10,6 @@ static var SkillCheckLevel : int = 1
 @onready var CameraRay : SpringArm3D = $SpringArm3D
 @onready var MeshInst : MeshInstance3D = $MeshInstance3D
 var direction : Vector2i = Vector2i(0,0)
-
-
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -27,15 +27,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	direction = Vector2i(0,0)
-	if Input.is_action_pressed("Up"):
-		direction.x = 1
-	if Input.is_action_pressed("Down"):
-		direction.x = -1
-	if Input.is_action_pressed("Left"):
-		direction.y = -1
-	if Input.is_action_pressed("Right"):
-		direction.y = 1
+	direction = round(Input.get_vector("Down", "Up", "Left", "Right"))
 	
 	if direction:
 		velocity.x = (direction.x * cos(CameraRay.rotation.y) + direction.y * sin(CameraRay.rotation.y)) * SPEED
@@ -55,5 +47,5 @@ func _on_line_edit_text_changed(new_text: String) -> void:
 	if new_text.is_valid_int():
 		SkillCheckLevel = int(new_text)
 	else:
-		$"../LineEdit".text = "1"
+		debug_skillcheck.text = "1"
 		SkillCheckLevel = 1
