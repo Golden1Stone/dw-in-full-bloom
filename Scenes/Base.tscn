@@ -82,7 +82,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Interaction" type="Control" parent="UI" unique_id=1573484419]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -130,7 +129,6 @@ theme_override_font_sizes/font_size = 45
 text = "E"
 
 [node name="SkillCheck" type="Control" parent="UI" unique_id=2043027683]
-visible = false
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -204,7 +202,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="DEBUG" type="Control" parent="UI/HUD" unique_id=890805128]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
